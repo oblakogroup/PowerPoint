@@ -9,6 +9,7 @@ package ui.comboBox
 		public function ComboBoxTextInput()
 		{
 			super();
+			this.setStyle('skinClass', ComboBoxTextInputSkin);
 		}
 		
 		override protected function focusInHandler(event:FocusEvent):void

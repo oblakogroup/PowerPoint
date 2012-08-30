@@ -17,7 +17,8 @@
 		</s:fill>
 	</s:Rect>
 	
-	<s:Label text="{data}" fontFamily="Verdana" fontSize="11" horizontalCenter="0" verticalCenter="0"
+	<s:Label text="{data}" fontSize="11" verticalCenter="0"
+			 left="21" right="20"
 			 color="0x000000" color.hovered="0xffffff"/>
 	
 </s:ItemRenderer>
