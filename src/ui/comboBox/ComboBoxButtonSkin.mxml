@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
+             xmlns:s="library://ns.adobe.com/flex/spark" 
+             xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
+			 
+             alpha.disabled="0.5">
+     
+    <fx:Metadata>
+        <![CDATA[ 
+        /** 
+         * @copy spark.skins.spark.ApplicationSkin#hostComponent
+         */
+        [HostComponent("spark.components.Button")]
+        ]]>
+    </fx:Metadata>
+    
+    <!-- states -->
+    <s:states>
+        <s:State name="up" />
+        <s:State name="over" />
+        <s:State name="down" />
+        <s:State name="disabled" />
+    </s:states>
+    
+	<s:Rect width="1" left="0" top="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color="0x888888" color.over="0x679bdc" color.down="0x4775ac"/>
+		</s:fill>
+	</s:Rect>
+	
+	<s:BitmapImage scaleMode="stretch" left="1" right="1" bottom="0" top="0"
+				   source.up="@Embed('assets/skinParts/comboboxButtonGradient.png')"
+				   source.over="@Embed('assets/skinParts/comboboxButtonGradient-over.png')"
+				   source.down="@Embed('assets/skinParts/comboboxButtonGradient-down.png')"
+					/>
+	
+	<s:Rect width="1" right="0" top="0" bottom="0">
+		<s:fill>
+			<s:SolidColor color.up="0x888888" color.over="0x9b9b9b" color.down="0x666d77"/>
+		</s:fill>
+	</s:Rect>
+    
+	<!-- layer 7: arrow -->
+	<!--- The arrow graphic displayed in the anchor button. -->
+	<s:Path verticalCenter="0" horizontalCenter="0" id="arrow"
+			data="M 4.0 4.0 L 4.0 3.0 L 5.0 3.0 L 5.0 2.0 L 6.0 2.0 L 6.0 1.0 L 7.0 1.0 L 7.0 0.0 L 0.0 0.0 L 0.0 1.0 L 1.0 1.0 L 1.0 2.0 L 2.0 2.0 L 2.0 3.0 L 3.0 3.0 L 3.0 4.0 L 4.0 4.0">
+		<s:fill>
+			<s:RadialGradient rotation="90" focalPointRatio="1">   
+				<!--- 
+				@private
+				The first part of the arrow's gradient fill. 
+				The default alpha is .6. The default color if 0x000000.
+				-->
+				<s:GradientEntry id="arrowFill1" color="0" alpha="0.6" />
+				<!--- 
+				@private 
+				The second part of the arrow's gradient fill. 
+				The default alpha is .6. The default color if 0x000000.
+				-->
+				<s:GradientEntry id="arrowFill2" color="0" alpha="0.8" />
+			</s:RadialGradient>
+		</s:fill>
+	</s:Path>
+    
+</s:SparkButtonSkin>
