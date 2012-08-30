@@ -1,0 +1,7 @@
+*.swf -crlf -diff
+*.swc -crlf -diff
+*.png -crlf -diff
+*.jpeg -crlf -diff
+*.ttf -crlf -diff
+*.ttc -crlf -diff
+*.gif -crlf -diff
