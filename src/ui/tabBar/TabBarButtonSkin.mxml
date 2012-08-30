@@ -67,8 +67,7 @@
 				 maxDisplayedLines="1"
 				 horizontalCenter="0" verticalCenter="1"
 				 top="2" bottom="2"
-				 fontSize="11"
-				 fontFamily="Verdana">
+				 fontSize="11">
 		</s:Label>
 		</s:Group>
 		<s:Spacer width="16"/>

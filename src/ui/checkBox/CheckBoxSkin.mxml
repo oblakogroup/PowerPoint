@@ -36,9 +36,10 @@
 			 textAlign="start"
 			 verticalAlign="middle"
 			 maxDisplayedLines="1"
-			 fontFamily="Verdana" fontSize="11"
+			 fontSize="11"
 			 left="21" right="0" top="3" bottom="3" verticalCenter="2" />
-		<s:BitmapImage  bottom="0" source="@Embed('assets/skinParts/checkbox-normal.png')"
-					   source.selectedStates="@Embed('assets/skinParts/checkbox-selected.png')"/>
+	
+	<s:BitmapImage  bottom="0" source="@Embed('assets/skinParts/checkbox-normal.png')"
+					source.selectedStates="@Embed('assets/skinParts/checkbox-selected.png')"/>
 	
 </s:SparkSkin>

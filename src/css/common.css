@@ -1,0 +1,40 @@
+/* CSS file */
+@namespace s "library://ns.adobe.com/flex/spark";
+@namespace mx "library://ns.adobe.com/flex/mx";
+
+@font-face { 
+	src: url("assets/fonts/Helvetica.ttc"); 
+	fontFamily: HelveticaCFF; 
+	fontAntiAliasType:advanced;
+	fontWeight: normal;
+	embedAsCFF: true; 
+}
+@font-face { 
+	src: url("assets/fonts/Helvetica.ttc"); 
+	fontFamily: HelveticaNONCFF; 
+	fontAntiAliasType:advanced;
+	fontWeight: normal;
+	embedAsCFF: false; 
+}
+@font-face { 
+	src: url("assets/fonts/Helvetica.ttc"); 
+	fontFamily: HelveticaCFF; 
+	fontAntiAliasType:advanced;
+	fontWeight: bold;
+	embedAsCFF: true; 
+}
+@font-face { 
+	src: url("assets/fonts/Helvetica.ttc"); 
+	fontFamily: HelveticaNONCFF; 
+	fontAntiAliasType:advanced;
+	fontWeight: bold;
+	embedAsCFF: false; 
+}
+
+s|global {
+	fontFamily: HelveticaCFF;
+}
+
+mx|global {
+	fontFamily: HelveticaNONCFF;
+}
