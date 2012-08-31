@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:searchField="ui.searchField.*" xmlns:comboBox="ui.comboBox.*" xmlns:ribbonSectionHeader="ui.ribbonSectionHeader.*" xmlns:roundedBitmapImage="ui.roundedBitmapImage.*" xmlns:manageableButton="ui.manageableButton.*">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:searchField="ui.searchField.*" xmlns:comboBox="ui.comboBox.*" xmlns:ribbonSectionHeader="ui.ribbonSectionHeader.*" xmlns:roundedBitmapImage="ui.roundedBitmapImage.*" xmlns:manageableButton="ui.manageableButton.*" xmlns:checkBox="ui.checkBox.*">
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
@@ -68,6 +68,28 @@
 		#toolBoxBtn {icon2Display: Embed('assets/icons/tb/toolboxIcon.png');}
 		#mediaBtn {icon2Display: Embed('assets/icons/tb/mediaIcon.png');}
 		#helpBtn {icon2Display: Embed('assets/icons/tb/helpIcon.png');}
+		
+		.ribbonIconButton {
+			skinClass: ClassReference("ui.ribbonVIconLabelButton.RibbonVIconLabelButtonSkin");
+		}
+		#fromCurrentSlideBtn {icon2Display: Embed('assets/icons/rb/startIcon.png');}
+		#fromStartBtn {icon2Display: Embed('assets/icons/rb/fromStartIcon.png');}
+		.ribbonHIconButton {
+			skinClass: ClassReference("ui.ribbonHIconLabelButton.RibbonHIconLabelButtonSkin");
+		}
+		#broadcastBtn {icon2Display: Embed('assets/icons/rb/broadcast.png');}
+		#customShowBtn {icon2Display: Embed('assets/icons/rb/customShow.png');}
+		
+		
+		#presenterBtn {icon2Display: Embed('assets/icons/rb/presenterView.png');}
+		#rehearseBtn {icon2Display: Embed('assets/icons/rb/rehearse.png');}
+		#recordBtn {icon2Display: Embed('assets/icons/rb/record.png');}
+		
+		#actionBtn {icon2Display: Embed('assets/icons/rb/actionSettings.png');}
+		#hideBtn {icon2Display: Embed('assets/icons/rb/hideSlide.png');}
+		#setUpBtn {icon2Display: Embed('assets/icons/rb/setUpShow.png');}
+		
+		
 	</fx:Style>
 	
 	<s:VGroup width="100%" gap="0">
@@ -77,7 +99,7 @@
 			<!--border around toolbar-->
 			<s:Rect left="0" right="0" top="0" height="54" topLeftRadiusX="5" topLeftRadiusY="5" topRightRadiusX="5" topRightRadiusY="5">
 				<s:stroke>
-					<s:SolidColorStroke color="0xc0c0c0"/>
+					<s:SolidColorStroke color="0x6b6b6b"/>
 				</s:stroke>
 			</s:Rect>
 			<s:Group top="1" left="1" right="1">
@@ -117,7 +139,7 @@
 							<s:Group height="100%"><s:Button id="copyBtn" enabled="false" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
 							<s:Group height="100%"><s:Button id="pasteBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
 							<s:Group height="100%"><s:Button id="formatBtn" enabled="false" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
-
+							
 							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
 							
 							<s:Group height="100%"><s:Button id="undoBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
@@ -129,9 +151,9 @@
 							<s:Group height="100%"><s:Button id="mediaBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
 							
 							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
-
+							
 							<s:Group height="100%"><comboBox:ComboBox dataProvider="{new ArrayCollection(['400%', '300%', '200%', '150%', '100%', '75%', '66%', '50%', '33%', '25%', 'Fit'])}"
-											   selectedIndex="3" width="50" verticalCenter="0"/></s:Group>
+																	  selectedIndex="3" width="50" verticalCenter="0"/></s:Group>
 							
 							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
 							<s:Group height="100%"><s:Button id="helpBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
@@ -148,38 +170,100 @@
 		<!--RIBBON-->
 		<s:Group width="100%">
 			<!--ribbon tabbar-->
-			<s:TabBar left="0" right="0" dataProvider="{tabbarViewStack}" skinClass="ui.tabBar.TabBarSkin"/>
-			<mx:ViewStack id="tabbarViewStack">
-				<s:NavigatorContent label="Home"/>
-				<s:NavigatorContent label="Theme"/>
-				<s:NavigatorContent label="Tables"/>
-				<s:NavigatorContent label="SmartArt"/>
-				<s:NavigatorContent label="Transitions"/>
-				<s:NavigatorContent label="Animations"/>
-				<s:NavigatorContent label="Slide Show"/>
-				<s:NavigatorContent label="Review"/>
-			</mx:ViewStack>
+			<s:VGroup gap="0" width="100%">
+				
+				<s:TabBar width="100%" dataProvider="{tabbarViewStack}" skinClass="ui.tabBar.TabBarSkin"/>
+				<mx:ViewStack id="tabbarViewStack" width="100%" selectedIndex="6">
+					<s:NavigatorContent label="Home"/>
+					<s:NavigatorContent label="Theme"/>
+					<s:NavigatorContent label="Tables"/>
+					<s:NavigatorContent label="SmartArt"/>
+					<s:NavigatorContent label="Transitions"/>
+					<s:NavigatorContent label="Animations"/>
+					<s:NavigatorContent label="Slide Show" width="100%">
+						<s:Group height="74" width="100%">
+							<!--undercover-->
+							<s:Rect left="0" right="0" top="0" bottom="0">
+								<s:fill>
+									<s:SolidColor color="0xe2d7d1"/>
+								</s:fill>
+							</s:Rect>
+							<!--ribbon background-->
+							<s:Group left="2" right="2" top="1" bottom="1">
+								<s:Rect left="0" right="0" top="0" bottom="0" radiusX="4" radiusY="4">
+									<s:fill>
+										<s:SolidColor color="0xe4e4e4"/>
+									</s:fill>
+									<s:stroke>
+										<s:SolidColorStroke color="0xbfb6b1"/>
+									</s:stroke>
+								</s:Rect>
+								<s:HGroup gap="7">
+									<s:VGroup gap="3" width="275" paddingTop="3">
+										<ribbonSectionHeader:RibbonSectionHeader text="Play Slide Show" width="100%"/>
+										<s:HGroup gap="10" paddingLeft="9">
+											<s:Button id="fromStartBtn" styleName="ribbonIconButton" label="From Start"/>
+											<s:Button id="fromCurrentSlideBtn" styleName="ribbonIconButton" label="From Current Slide"/>
+											<s:VGroup gap="2">
+												<s:Button id="broadcastBtn" width="112" styleName="ribbonHIconButton" label="Broadcast Show"/>
+												<s:Button id="customShowBtn" width="112" styleName="ribbonHIconButton" label="Custom Shows"/>
+											</s:VGroup>
+										</s:HGroup>
+									</s:VGroup>
+									
+									<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/rb/spacer.png')" verticalCenter="2"/></s:Group>
+									
+									<s:VGroup gap="3" width="240" paddingTop="3">
+										<ribbonSectionHeader:RibbonSectionHeader text="Presenter Tools" width="100%"/>
+										<s:HGroup gap="10" paddingLeft="9">
+											<s:Button id="presenterBtn" styleName="ribbonIconButton" label="Presenter View"/>
+											<s:Button id="rehearseBtn" styleName="ribbonIconButton" label="Rehearse"/>
+											<s:Button id="recordBtn" styleName="ribbonIconButton" label="Record Slide Show"/>
+										</s:HGroup>
+									</s:VGroup>
+									
+									<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/rb/spacer.png')" verticalCenter="2"/></s:Group>
+									
+									
+									<s:VGroup gap="3" width="350" paddingTop="3">
+										<ribbonSectionHeader:RibbonSectionHeader text="Set Up" width="100%"/>
+										<s:HGroup gap="10" paddingLeft="9">
+											<s:Button id="actionBtn" styleName="ribbonIconButton" enabled="false" label="Action Settings"/>
+											<s:Button id="hideBtn" styleName="ribbonIconButton" label="Hide Slide"/>
+											<s:Button id="setUpBtn" styleName="ribbonIconButton" label="Set Up Show"/>
+											<s:VGroup gap="2">
+												<checkBox:CheckBox label="Play Narrations" selected="true"/>
+												<checkBox:CheckBox label="Use Timings" selected="true"/>
+												<checkBox:CheckBox label="Show Media Controls" selected="true"/>
+											</s:VGroup>
+										</s:HGroup>
+									</s:VGroup>
+									
+									<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/rb/spacer.png')" verticalCenter="2"/></s:Group>
+									
+									<s:VGroup gap="3" width="163" paddingTop="3">
+										<ribbonSectionHeader:RibbonSectionHeader text="Setting for Two Displays" width="100%"/>
+										<s:ButtonBar requireSelection="true" skinClass="ui.ribbonButtonBar.RibbonButtonBarSkin" dataProvider="{new ArrayCollection(['Presenter View', 'Mirror Show'])}"/>
+									</s:VGroup>
+									
+									<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/rb/spacer.png')" verticalCenter="2"/></s:Group>
+									
+									
+									
+								</s:HGroup>
+							</s:Group>
+						</s:Group>
+					</s:NavigatorContent>
+					<s:NavigatorContent label="Review"/>
+				</mx:ViewStack>
+			</s:VGroup>
 		</s:Group>
 	</s:VGroup>
 	
-	
-	<!--<searchField:SearchField left="20" top="20" dataProvider="{new ArrayCollection(['Advanced Find...', 'Replace...'])}" 
-	prompt="Search in Presentation"/>
-	
-	<comboBox:ComboBox selectedIndex="3" dataProvider="{new ArrayCollection(['400%', '300%', '200%', '150%', '100%', '75%', '66%', '50%', '33%', '25%', 'Fit'])}"
-	left="400" top="400" width="50" />
-	
-	
-	<ribbonSectionHeader:RibbonSectionHeader width="140" text="Play Slide Show" top="690" horizontalCenter="0"/>
-	
-	<fx:Style>
-	#broadcast {
-	icon2Display: Embed('assets/icons/rb/broadcast.png');
-	}
-	</fx:Style>
-	
-	<s:Button top="200" right="400" id="broadcast" skinClass="ui.ribbonHIconLabelButton.RibbonHIconLabelButtonSkin" label="Broadcast Show"/>
-	
-	<s:ButtonBar requireSelection="true" top="780" right="333" skinClass="ui.ribbonButtonBar.RibbonButtonBarSkin" dataProvider="{new ArrayCollection(['Presenter View', 'Mirror Show'])}"/>-->
+	<s:Rect width="100%" top="54" bottom="0">
+		<s:stroke>
+			<s:SolidColorStroke color="0x6b6b6b"/>
+		</s:stroke>
+	</s:Rect>
 	
 </s:Group>
