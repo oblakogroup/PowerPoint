@@ -9,6 +9,7 @@ package ui.checkBox
 		public function CheckBox()
 		{
 			super();
+			this.setStyle('skinClass', CheckBoxSkin);
 		}
 		
 		override protected function focusOutHandler(event:FocusEvent):void
