@@ -1,8 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:searchField="ui.searchField.*" xmlns:comboBox="ui.comboBox.*" xmlns:ribbonSectionHeader="ui.ribbonSectionHeader.*" xmlns:roundedBitmapImage="ui.roundedBitmapImage.*" xmlns:manageableButton="ui.manageableButton.*">
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			
+			
+			
+			protected function overControlButtonsHandler(event:MouseEvent):void
+			{
+				changeButtonState("over");				
+			}
+			private function changeButtonState(state2Change:String = ""):void {
+				minimizeBtn.currentButtonState = maximizeBtn.currentButtonState = state2Change;
+				minimizeBtn.invalidateSkinState();
+				maximizeBtn.invalidateSkinState();
+			}
+			
+			protected function outControlButtonsHandler(event:MouseEvent):void
+			{
+				changeButtonState();
+			}
+			
+			protected function downControlButtonsHandler(event:MouseEvent):void
+			{
+				var button:ManageableButton = event.currentTarget as ManageableButton;
+				button.currentButtonState = "";
+				button.invalidateSkinState();
+			}
+			
+		]]>
+	</fx:Script>
 	
+	<fx:Style>
+		.iconButtons {
+			skinClass: ClassReference("ui.iconButton.IconButtonSkin");
+		}
+		#closeBtn {
+			icon2Display: Embed('assets/icons/tb/close.png');
+			icon2DisplayDown: Embed('assets/icons/tb/close-down.png');
+		}
+		#minimizeBtn {
+			icon2Display: Embed('assets/icons/tb/minimize.png');
+			icon2DisplayOver: Embed('assets/icons/tb/minimize-over.png');
+			icon2DisplayDown: Embed('assets/icons/tb/minimize-down.png');
+		}
+		#maximizeBtn {
+			icon2Display: Embed('assets/icons/tb/maximize.png');
+			icon2DisplayOver: Embed('assets/icons/tb/maximize-over.png');
+			icon2DisplayDown: Embed('assets/icons/tb/maximize-down.png');
+		}
+		.toolBarIconButton {
+			skinClass: ClassReference("ui.toolBarIconButton.ToolBarIconButtonSkin");
+		}
+		#newBtn {icon2Display: Embed('assets/icons/tb/newIcon.png');}
+		#templateBtn {icon2Display: Embed('assets/icons/tb/templateIcon.png');}
+		#openBtn {icon2Display: Embed('assets/icons/tb/openIcon.png');}
+		#saveBtn {icon2Display: Embed('assets/icons/tb/saveIcon.png');}
+		#printBtn {icon2Display: Embed('assets/icons/tb/printIcon.png');}
+		#cutBtn {icon2Display: Embed('assets/icons/tb/cutIcon.png');}
+		#copyBtn {icon2Display: Embed('assets/icons/tb/copyIcon.png');}
+		#pasteBtn {icon2Display: Embed('assets/icons/tb/pasteIcon.png');}
+		#formatBtn {icon2Display: Embed('assets/icons/tb/formatIcon.png');}
+		#undoBtn {icon2Display: Embed('assets/icons/tb/undoIcon.png');}
+		#redoBtn {icon2Display: Embed('assets/icons/tb/redoIcon.png');}
+		#toolBoxBtn {icon2Display: Embed('assets/icons/tb/toolboxIcon.png');}
+		#mediaBtn {icon2Display: Embed('assets/icons/tb/mediaIcon.png');}
+		#helpBtn {icon2Display: Embed('assets/icons/tb/helpIcon.png');}
+	</fx:Style>
+	
+	<s:VGroup width="100%" gap="0">
+		
+		<!--TOOLBAR-->
+		<s:Group width="100%">
+			<!--border around toolbar-->
+			<s:Rect left="0" right="0" top="0" height="54" topLeftRadiusX="5" topLeftRadiusY="5" topRightRadiusX="5" topRightRadiusY="5">
+				<s:stroke>
+					<s:SolidColorStroke color="0xc0c0c0"/>
+				</s:stroke>
+			</s:Rect>
+			<s:Group top="1" left="1" right="1">
+				<!--toolbar background-->
+				<roundedBitmapImage:RoundedBitmapImage source="@Embed('assets/skinParts/toolbarGradient.png')" scaleMode="stretch"
+													   topLeftCornerRadius="5" topRightCornerRadius="5" width="100%" />
+				<s:VGroup width="100%" gap="0">
+					<s:Group width="100%" height="25">
+						<!--close, minimize, maximize buttons-->
+						<s:HGroup paddingLeft="9" paddingTop="5" gap="8">
+							<s:Button id="closeBtn" styleName="iconButtons"/>
+							<manageableButton:ManageableButton id="minimizeBtn" styleName="iconButtons" mouseOver="overControlButtonsHandler(event)"
+															   mouseOut="outControlButtonsHandler(event)" mouseDown="downControlButtonsHandler(event)"/>
+							<manageableButton:ManageableButton id="maximizeBtn" styleName="iconButtons" mouseOver="overControlButtonsHandler(event)"
+															   mouseOut="outControlButtonsHandler(event)" mouseDown="downControlButtonsHandler(event)"/>
+						</s:HGroup>
+						<!--presentation heading at the top-->
+						<s:HGroup horizontalCenter="0" paddingTop="3" gap="5">
+							<s:BitmapImage source="@Embed('assets/icons/tb/presentationIcon.png')"/>
+							<s:Group height="100%">
+								<s:Label text="Presentation1" color="0x353535" bottom="0" fontSize="13"/>
+							</s:Group>
+						</s:HGroup>
+					</s:Group>
+					<s:Group width="100%">
+						<!--toolbar icon buttons-->
+						<s:HGroup height="25" paddingLeft="2" gap="4">
+							<s:Group height="100%"><s:Button id="newBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="templateBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="openBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="saveBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="printBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							
+							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
+							
+							<s:Group height="100%"><s:Button id="cutBtn" enabled="false" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="copyBtn" enabled="false" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="pasteBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="formatBtn" enabled="false" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
 
+							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
+							
+							<s:Group height="100%"><s:Button id="undoBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="redoBtn" enabled="false" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							
+							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
+							
+							<s:Group height="100%"><s:Button id="toolBoxBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:Button id="mediaBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+							
+							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
+
+							<s:Group height="100%"><comboBox:ComboBox dataProvider="{new ArrayCollection(['400%', '300%', '200%', '150%', '100%', '75%', '66%', '50%', '33%', '25%', 'Fit'])}"
+											   selectedIndex="3" width="50" verticalCenter="0"/></s:Group>
+							
+							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
+							<s:Group height="100%"><s:Button id="helpBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
+						</s:HGroup>
+						<searchField:SearchField top="2" right="6" dataProvider="{new ArrayCollection(['Advanced Find...', 'Replace...'])}" 
+												 prompt="Search in Presentation"/>
+					</s:Group>
+				</s:VGroup>
+			</s:Group>
+		</s:Group>
+		
+		<s:Spacer height="-1"/>
+		
+		<!--RIBBON-->
+		<s:Group width="100%">
+			<!--ribbon tabbar-->
+			<s:TabBar left="0" right="0" dataProvider="{tabbarViewStack}" skinClass="ui.tabBar.TabBarSkin"/>
+			<mx:ViewStack id="tabbarViewStack">
+				<s:NavigatorContent label="Home"/>
+				<s:NavigatorContent label="Theme"/>
+				<s:NavigatorContent label="Tables"/>
+				<s:NavigatorContent label="SmartArt"/>
+				<s:NavigatorContent label="Transitions"/>
+				<s:NavigatorContent label="Animations"/>
+				<s:NavigatorContent label="Slide Show"/>
+				<s:NavigatorContent label="Review"/>
+			</mx:ViewStack>
+		</s:Group>
+	</s:VGroup>
+	
+	
+	<!--<searchField:SearchField left="20" top="20" dataProvider="{new ArrayCollection(['Advanced Find...', 'Replace...'])}" 
+	prompt="Search in Presentation"/>
+	
+	<comboBox:ComboBox selectedIndex="3" dataProvider="{new ArrayCollection(['400%', '300%', '200%', '150%', '100%', '75%', '66%', '50%', '33%', '25%', 'Fit'])}"
+	left="400" top="400" width="50" />
+	
+	
+	<ribbonSectionHeader:RibbonSectionHeader width="140" text="Play Slide Show" top="690" horizontalCenter="0"/>
+	
+	<fx:Style>
+	#broadcast {
+	icon2Display: Embed('assets/icons/rb/broadcast.png');
+	}
+	</fx:Style>
+	
+	<s:Button top="200" right="400" id="broadcast" skinClass="ui.ribbonHIconLabelButton.RibbonHIconLabelButtonSkin" label="Broadcast Show"/>
+	
+	<s:ButtonBar requireSelection="true" top="780" right="333" skinClass="ui.ribbonButtonBar.RibbonButtonBarSkin" dataProvider="{new ArrayCollection(['Presenter View', 'Mirror Show'])}"/>-->
 	
 </s:Group>
