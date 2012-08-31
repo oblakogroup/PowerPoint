@@ -34,7 +34,7 @@
 		<s:Spacer width="-18"/>
 		<searchField:SearchFieldTextInput searchField="{this}"
 					 height="21" width="232"
-					 prompt="{prompt}"/>
+					 customPromptValue="{prompt}"/>
 	</s:HGroup>
 	
 </s:Group>
