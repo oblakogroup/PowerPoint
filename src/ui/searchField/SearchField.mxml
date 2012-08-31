@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		 xmlns:s="library://ns.adobe.com/flex/spark" 
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:searchField="ui.searchField.*" xmlns:comboBox="ui.comboBox.*">
+	
+	<fx:Script>
+		<![CDATA[
+			import mx.collections.ArrayCollection;
+			import mx.events.FlexEvent;
+			
+			import spark.filters.GlowFilter;
+			
+			
+			[Bindable]
+			public var prompt:String = "";
+			[Bindable]
+			public var text:String = "";
+			[Bindable]
+			public var dataProvider:ArrayCollection = new ArrayCollection();
+			
+			public function addFocusGlow():void {
+				this.filters = [new spark.filters.GlowFilter(0x5b93ca, 1, 4, 4, 4, 3 )];
+			}
+			public function removeFocusGlow():void {
+				this.filters = [];
+			}
+		]]>
+		
+		
+	</fx:Script>
+	
+	<s:HGroup gap="0">
+		<searchField:SearchFieldDropDownList height="21" width="50" searchField="{this}" dataProvider="{dataProvider}"/>
+		<s:Spacer width="-18"/>
+		<searchField:SearchFieldTextInput searchField="{this}"
+					 height="21" width="232"
+					 prompt="{prompt}"/>
+	</s:HGroup>
+	
+</s:Group>
