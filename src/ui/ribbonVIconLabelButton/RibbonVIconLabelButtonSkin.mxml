@@ -3,7 +3,7 @@
 <s:SparkButtonSkin xmlns:fx="http://ns.adobe.com/mxml/2009" 
 				   xmlns:s="library://ns.adobe.com/flex/spark" 
 				   xmlns:fb="http://ns.adobe.com/flashbuilder/2009"
-				   alpha.disabled="0.5">
+				   alpha.disabled="0.3">
 	
 	<fx:Metadata>
 		<![CDATA[ 
@@ -31,15 +31,15 @@
 				<s:Rect left="0" right="0" top="0" bottom="0" radiusX="2" radiusY="2">
 					<s:fill>
 						<s:LinearGradient rotation="90">
-							<s:GradientEntry color.over="0xefefef" color.down="0xa1a1a1" alpha.up="0"/>
-							<s:GradientEntry color.over="0xd1d1d2" color.down="0xaeaeae" alpha.up="0"/>
+							<s:GradientEntry color.over="0xefefef" color.down="0xa1a1a1" alpha.up="0" alpha.disabled="0"/>
+							<s:GradientEntry color.over="0xd1d1d2" color.down="0xaeaeae" alpha.up="0" alpha.disabled="0"/>
 						</s:LinearGradient>
 					</s:fill>
 					<s:stroke>
-						<s:SolidColorStroke color.over="0xb3b3b3" color.down="0x828282" alpha.up="0"/>
+						<s:SolidColorStroke color.over="0xb3b3b3" color.down="0x828282" alpha.up="0" alpha.disabled="0"/>
 					</s:stroke>
 				</s:Rect>
-				<s:BitmapImage source="{getStyle('iconLocation')}" verticalCenter="0" horizontalCenter="0" left="1" right="1" top="2" bottom="2"/>
+				<s:BitmapImage source="{getStyle('icon2Display')}" verticalCenter="0" horizontalCenter="0" left="1" right="1" top="2" bottom="2"/>
 			</s:Group>
 			
 		</s:Group>
@@ -51,7 +51,7 @@
 				 maxDisplayedLines="1"
 				 horizontalCenter="0" verticalCenter="1"
 				 top="2" bottom="2"
-				 fontSize="11"/>
+				 fontSize="10.5"/>
 			
 	</s:VGroup>
 	
