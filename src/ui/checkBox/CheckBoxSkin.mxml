@@ -36,7 +36,7 @@
 			 textAlign="start"
 			 verticalAlign="middle"
 			 maxDisplayedLines="1"
-			 fontSize="11"
+			 fontSize="10"
 			 left="21" right="0" top="3" bottom="3" verticalCenter="2" />
 	
 	<s:BitmapImage  bottom="0" source="@Embed('assets/skinParts/checkbox-normal.png')"
