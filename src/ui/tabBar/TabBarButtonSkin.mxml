@@ -43,12 +43,12 @@
 				   source.down="@Embed('assets/skinParts/tab_down.png')"
 				   source.selectedStates="@Embed('assets/skinParts/tab-selected.png')"/>
 	
-	<s:Rect right="0" top="0" bottom="0" width="1">
+	<s:Rect right="0" top="0" bottom="1" width="1">
 		<s:fill>
 			<s:SolidColor color="0xb2aaa7"/>
 		</s:fill>
 	</s:Rect>
-	<s:Rect left="0" top="0" bottom="0" width="1">
+	<s:Rect left="0" top="0" bottom="1" width="1">
 		<s:fill>
 			<s:SolidColor color="0xb2aaa7"/>
 		</s:fill>
