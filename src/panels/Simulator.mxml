@@ -1,16 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <s:Group xmlns:fx="http://ns.adobe.com/mxml/2009" 
 		 xmlns:s="library://ns.adobe.com/flex/spark" 
-		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:searchField="ui.searchField.*" xmlns:comboBox="ui.comboBox.*" xmlns:ribbonSectionHeader="ui.ribbonSectionHeader.*" xmlns:roundedBitmapImage="ui.roundedBitmapImage.*" xmlns:manageableButton="ui.manageableButton.*" xmlns:checkBox="ui.checkBox.*">
+		 xmlns:mx="library://ns.adobe.com/flex/mx" xmlns:searchField="ui.searchField.*" 
+		 xmlns:comboBox="ui.comboBox.*" xmlns:ribbonSectionHeader="ui.ribbonSectionHeader.*" 
+		 xmlns:roundedBitmapImage="ui.roundedBitmapImage.*" xmlns:manageableButton="ui.manageableButton.*" 
+		 xmlns:checkBox="ui.checkBox.*" creationComplete="simulator_creationCompleteHandler(event)">
 	
 	
 	<fx:Script>
 		<![CDATA[
 			import mx.collections.ArrayCollection;
 			import mx.controls.Text;
+			import mx.events.FlexEvent;
+			
+			import spark.events.IndexChangeEvent;
 			
 			[Bindable]
 			private var footerButtonBarValue:String = "";
+			[Bindable]
+			private var canvasScale:Number = 1;
 			
 			protected function overControlButtonsHandler(event:MouseEvent):void
 			{
@@ -41,6 +49,27 @@
 			protected function footerButtonBar_rollOutHandler(event:MouseEvent):void
 			{
 				footerButtonBarValue = footerButtonBar.selectedItem as String;
+			}
+			
+			protected function zoomSlider_changeHandler(event:Event):void
+			{
+				canvasScale = zoomSlider.value/100;
+				zoomComboBox.textInput.text = zoomSlider.value + "%";
+			}
+			
+			protected function simulator_creationCompleteHandler(event:FlexEvent):void
+			{
+				canvasScale = zoomSlider.value/100;
+				zoomComboBox.textInput.text = zoomSlider.value + "%";
+			}
+			
+			protected function zoomComboBox_changeHandler(event:IndexChangeEvent):void
+			{
+				var selectedValue:String = zoomComboBox.selectedItem as String; 
+				var zoom:Number = Number(selectedValue.substr(0, selectedValue.length - 1));
+				canvasScale = zoom/100;
+				zoomSlider.value = zoom;
+				
 			}
 			
 		]]>
@@ -172,8 +201,8 @@
 							
 							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
 							
-							<s:Group height="100%"><comboBox:ComboBox dataProvider="{new ArrayCollection(['400%', '300%', '200%', '150%', '100%', '75%', '66%', '50%', '33%', '25%', 'Fit'])}"
-																	  selectedIndex="3" width="50" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><comboBox:ComboBox id="zoomComboBox" dataProvider="{new ArrayCollection(['400%', '300%', '200%', '150%', '100%', '75%', '66%', '50%', '33%', '25%'])}"
+																	  selectedIndex="3" width="50" verticalCenter="0" change="zoomComboBox_changeHandler(event)"/></s:Group>
 							
 							<s:Group height="100%"><s:BitmapImage source="@Embed('assets/icons/tb/spacer.png')" /></s:Group>
 							<s:Group height="100%"><s:Button id="helpBtn" styleName="toolBarIconButton" verticalCenter="0"/></s:Group>
@@ -313,7 +342,7 @@
 				<s:BitmapImage verticalCenter="0" horizontalCenter="0" source="@Embed('assets/mainContent/vsplitViewSeparatorDots.png')"/>
 			</s:Group>
 			<!--group that contains right (the most inportant) area of the main content panel-->
-			<s:Group width="100%" height="100%">
+			<s:Group width="100%" height="100%" clipAndEnableScrolling="true">
 				<!--grey-blue background-->
 				<s:Rect width="100%" height="100%">
 					<s:fill>
@@ -324,7 +353,7 @@
 					</s:filters>
 				</s:Rect>
 				<!--canvas-->
-				<s:Rect id="canvas" width="420" height="340" horizontalCenter="0" verticalCenter="-30" >
+				<s:Rect id="canvas" width="420" height="340" horizontalCenter="0" verticalCenter="-30" scaleX="{canvasScale}" scaleY="{canvasScale}">
 					<s:fill>
 						<s:SolidColor color="0xffffff"/>
 					</s:fill>
@@ -382,7 +411,7 @@
 					<s:Group height="100%">
 						<s:Group height="100%"><s:Label left="16" text="{Math.round(zoomSlider.value) + '%'}" fontSize="11" verticalCenter="1"/></s:Group>
 						<s:HGroup width="207" paddingLeft="50" gap="14" height="100%">
-							<s:Group height="100%"><s:HSlider id="zoomSlider" value="95" skinClass="ui.nsSlider.NSSliderSkin" width="100" minimum="10" maximum="400" verticalCenter="0"/></s:Group>
+							<s:Group height="100%"><s:HSlider id="zoomSlider" value="95" skinClass="ui.nsSlider.NSSliderSkin" width="100" minimum="10" maximum="400" change="zoomSlider_changeHandler(event)" verticalCenter="0"/></s:Group>
 							<s:Group height="100%"><s:Button id="zoomButton" verticalCenter="0"/></s:Group>
 						</s:HGroup>
 					</s:Group>
