@@ -1,4 +1,11 @@
 .settings
 bin-debug
+html-template
 bin-release
 .DS_Store
+.actionScriptProperties
+.flexProperties
+.project
+target
+libs
+
